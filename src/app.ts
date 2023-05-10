@@ -3,9 +3,9 @@ import multer from "multer";
 import fs, { promises } from "fs";
 import path from "path";
 import { v4 as uuidv4 } from "uuid";
+require("dotenv").config();
 
 const app: Application = express();
-const port: number = 5000;
 
 let storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -53,6 +53,6 @@ app.post(
   (req: Request, res: Response) => {}
 );
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Listening on port ${process.env.PORT}`);
 });

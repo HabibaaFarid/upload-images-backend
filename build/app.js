@@ -17,8 +17,8 @@ const multer_1 = __importDefault(require("multer"));
 const fs_1 = require("fs");
 const path_1 = __importDefault(require("path"));
 const uuid_1 = require("uuid");
+require("dotenv").config();
 const app = (0, express_1.default)();
-const port = 5000;
 let storage = multer_1.default.diskStorage({
     destination: function (req, file, cb) {
         cb(null, "public");
@@ -57,11 +57,7 @@ app.get("/get-images", (req, res) => __awaiter(void 0, void 0, void 0, function*
         res.status(500).json(err);
     }
 }));
-app.post("/upload-images", upload.array("images"), (req, res) => {
-    console.log("i am here.");
-    console.log(req.files);
-    res.send("Upload successful");
-});
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`);
+app.post("/upload-images", upload.array("images"), (req, res) => { });
+app.listen(process.env.PORT, () => {
+    console.log(`Listening on port ${process.env.PORT}`);
 });
